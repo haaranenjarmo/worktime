@@ -18,6 +18,8 @@ namespace WorkTime.Data
         {
             _httpContextAccessor = httpContextAccessor;
             _userId = (_httpContextAccessor.HttpContext.User.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value);
+            
+
         }
 
         public DbSet<WorkHourModel> WorkHours { get; set; }
@@ -29,11 +31,8 @@ namespace WorkTime.Data
             modelBuilder.Entity<WorkHourModel>().ToTable("WorkHour")
                 .HasQueryFilter(i => i.UserId == _userId || _userId == null);
 
-            modelBuilder.Entity<FlexTimeModel>().ToTable("FlexTime")
-                .HasQueryFilter(i => i.UserId == _userId || _userId == null);
-            
+            modelBuilder.Entity<FlexTimeModel>().ToTable("FlexTime");
             modelBuilder.Entity<BillingRateModel>().ToTable("BillingRate")
-                .HasQueryFilter(i => i.UserId == _userId || _userId == null)
                 .Property(p => p.BillingRate).HasColumnType("decimal(3,2)");
         }
     }
