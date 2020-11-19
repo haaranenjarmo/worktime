@@ -16,6 +16,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using WorkTime.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace WorkTime
 {
@@ -33,6 +34,8 @@ namespace WorkTime
         {
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllersWithViews(options =>
             {

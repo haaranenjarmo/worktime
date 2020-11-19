@@ -14,7 +14,7 @@ namespace WorkTime.Models
         public Guid Id { get; set; }
         public string UserId { get; set; }
         public DateTime Date { get; set; }
-        public DateTime FlexBalance { get; set; }
+        public Double FlexBalance { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
 }
